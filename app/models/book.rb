@@ -1,4 +1,4 @@
 class Book < ApplicationRecord
-  has_one :photo, as: :attachable, class_name: 'Attachment'
-  has_one :attachment, as: :attachable
+  has_one :cover_photo, as: :attachable, class_name: 'Attachment'
+  has_one :pdf, as: :attachable, class_name: 'Attachment'
 end
