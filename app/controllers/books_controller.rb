@@ -35,7 +35,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to books_path
+      redirect_to @book
     else
       render :edit
     end
