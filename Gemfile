@@ -8,6 +8,7 @@ end
 ruby '2.4.1'
 
 gem 'activerecord-import', '~> 0.18.3'
+gem 'bitmask_attributes'
 gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'carrierwave', '~> 1.0'
