@@ -2,13 +2,13 @@ class BooksController < ApplicationController
   before_action :set_book
 
   def index
-    @books = Book.all
+    @books = current_user.books
   end
 
   def new; end
 
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.new(book_params)
 
     if @book.save
       flash[:success] = 'Created new book'
@@ -26,6 +26,6 @@ class BooksController < ApplicationController
   end
 
   def set_book
-    @book = Book.new
+    @book = current_user.books.new
   end
 end
