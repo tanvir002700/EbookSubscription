@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :delete]
 
   def index
-    @books = Book.where(status: :published)
+    @books = Book.where(status: :approved)
   end
 
   def show; end
