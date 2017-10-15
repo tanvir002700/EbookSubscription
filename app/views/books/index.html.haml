@@ -1,10 +1,13 @@
-%table
-  %tr
-    %td Title
-    %td Details
-    %td Cover Photo
-    %td Pdf
-    %td Status
-
-  =render @books
+%table.table.table-striped.table-hover
+  %thead
+    %tr
+      %th #
+      %th Title
+      %th Description
+      %th Cover Photo
+      %th Status
+      %th
+      %th
+  %tbody
+    =render @books
 =link_to 'Add new', new_book_path

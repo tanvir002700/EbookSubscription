@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :books, dependent: :destroy
-  has_and_belongs_to_many :subscribe_books, class_name: 'Book'
+  has_and_belongs_to_many :subscribe_books, class_name: 'Book', dependent: :destroy
 
   bitmask :roles, as: [:user, :publisher, :admin]
 
