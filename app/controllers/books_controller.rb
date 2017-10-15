@@ -5,6 +5,8 @@ class BooksController < ApplicationController
     @books = Book.where(status: :published)
   end
 
+  def show; end
+  
   def published_book
     @books = current_user.books
   end

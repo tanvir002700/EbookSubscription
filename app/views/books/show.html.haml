@@ -1,0 +1,11 @@
+.jumbotron
+  %h1= @book.title
+  .container
+    .row
+      .col-md-6
+        %p= @book.description
+      .col-md-6
+        =image_tag @book.cover_photo, size: '400'
+        .row
+          .col-md-12
+            =link_to 'Read Book', @book.pdf.url, class: 'btn btn-primary btn-lg btn-block'
