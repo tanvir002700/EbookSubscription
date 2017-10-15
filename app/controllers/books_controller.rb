@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, except: :index
+  before_action :set_book, except: [:index, :published_book]
 
   def index
     @books = Book.where(status: :published)
@@ -10,7 +10,7 @@ class BooksController < ApplicationController
   end
 
   def subscribed_book
-    
+
   end
 
   def new; end
