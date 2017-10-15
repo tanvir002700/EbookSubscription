@@ -22,8 +22,17 @@ class BooksController < ApplicationController
       flash[:success] = 'Created new book'
       redirect_to books_path
     else
-      flash[:error] = 'Book not created'
-      render 'new'
+      render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @book.update(book_params)
+      redirect_to books_path
+    else
+      render :edit
     end
   end
 
@@ -34,6 +43,6 @@ class BooksController < ApplicationController
   end
 
   def set_book
-    @book = current_user.books.new
+    @book = current_user.books.find(params[:id]) || current_user.books.new
   end
 end
