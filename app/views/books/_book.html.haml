@@ -1,0 +1,7 @@
+%tr
+  %td= book.title
+  %td= book.description
+  %td
+    =image_tag book.cover_photo.file, size: '30x30'
+  %td
+    =link_to 'pdf', book.pdf.file.url

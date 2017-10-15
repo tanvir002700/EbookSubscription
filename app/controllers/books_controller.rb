@@ -1,16 +1,18 @@
 class BooksController < ApplicationController
-  def new
-    @book = Book.new
-    @book.build_cover_photo
-    @book.build_pdf
+  before_action :set_book
+
+  def index
+    @books = Book.all
   end
+
+  def new; end
 
   def create
     @book = Book.new(book_params)
 
     if @book.save
       flash[:success] = 'Created new book'
-      redirect_to home_index_path
+      redirect_to books_path
     else
       flash[:error] = 'Book not created'
       render 'new'
@@ -18,7 +20,12 @@ class BooksController < ApplicationController
   end
 
   private
+
   def book_params
-    params.require(:book).permit(:title, :description, cover_photo_attributes: [:id, :file], pdf_attributes: [:id, :file])
+    params.require(:book).permit(:title, :description, :cover_photo, :pdf)
+  end
+
+  def set_book
+    @book = Book.new
   end
 end
