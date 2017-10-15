@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :books do
-    resources :cover_photo
-    resources :pdf
+    get :published_book, on: :collection
   end
 end

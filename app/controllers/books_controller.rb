@@ -5,6 +5,10 @@ class BooksController < ApplicationController
     @books = current_user.books
   end
 
+  def published_book
+    @books = Book.where(status: :published)
+  end
+
   def new; end
 
   def create
