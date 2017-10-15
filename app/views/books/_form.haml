@@ -1,0 +1,10 @@
+=form_for @book do |f|
+  =f.label :title
+  =f.text_field :title
+  =f.label :description
+  =f.text_area :description
+  =f.fields_for :cover_photo do |p|
+    =p.file_field :file
+  =f.fields_for :pdf do |p|
+    =p.file_field :file
+  =f.submit
