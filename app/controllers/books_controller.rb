@@ -2,11 +2,15 @@ class BooksController < ApplicationController
   before_action :set_book, except: :index
 
   def index
-    @books = current_user.books
+    @books = Book.where(status: :published)
   end
 
   def published_book
-    @books = Book.where(status: :published)
+    @books = current_user.books
+  end
+
+  def subscribed_book
+    
   end
 
   def new; end
