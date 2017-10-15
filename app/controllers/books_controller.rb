@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book
+  before_action :set_book, except: :index
 
   def index
     @books = current_user.books
