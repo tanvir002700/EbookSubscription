@@ -17,11 +17,12 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
+    @review = @book.reviews.new(review_params)
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+        @book.update_attribute(:status, params[:review][:book][:status])
+        format.html { redirect_to [@book, @review], notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new }

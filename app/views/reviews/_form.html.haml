@@ -1,10 +1,22 @@
-= form_for @review do |f|
-  - if @review.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@review.errors.count, "error")} prohibited this review from being saved:"
-      %ul
-        - @review.errors.full_messages.each do |msg|
-          %li= msg
+=form_for [@book, @review], html: {class: 'form-horizontal'} do |f|
+  %fieldset
+    .form-group
+      %label.col-lg-2.control-label{:for => "inputEmail"} Title
+      .col-lg-10
+        =f.text_field :title, class: 'form-control', placeholder: 'Title'
 
-  .actions
-    = f.submit 'Save'
+    .form-group
+      %label.col-lg-2.control-label{:for => "inputPassword"} Description
+      .col-lg-10
+        =f.text_area :description, class: 'form-control', placeholder: 'Description', rows: 5
+
+    .form-group
+      %label.col-lg-2.control-label{:for => "inputPassword"} Status
+      .col-lg-10
+        =f.fields_for @book do |b|
+          =b.select :status, Book::STATUS
+    .form-group
+      .col-lg-6
+        = f.submit class: 'btn btn-primary btn-block'
+      .col-lg-6
+        = link_to 'Cancel', :back, class: 'btn btn-info btn-block'
