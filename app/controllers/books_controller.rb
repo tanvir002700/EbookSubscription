@@ -31,7 +31,9 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    authorize @book
+  end
 
   def update
     if @book.update(book_params)
@@ -56,6 +58,6 @@ class BooksController < ApplicationController
   end
 
   def set_book
-    @book = current_user.books.find(params[:id])
+    @book = Book.find(params[:id])
   end
 end
