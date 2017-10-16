@@ -5,16 +5,17 @@ class BooksController < ApplicationController
     @books = Book.where(status: :approved)
   end
 
-  def show; end
-
-  def published_book
+  def published_index
     @books = current_user.books
     render :index
   end
 
-  def subscribed_book
-
+  def subscribed_index
+    @books = current_user.subscribe_books
+    render :index
   end
+
+  def show; end
 
   def new
     @book = Book.new

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :books do
-    get :published_book, on: :collection
+    get :published_index, on: :collection
+    get :subscribed_index, on: :collection
   end
 end
