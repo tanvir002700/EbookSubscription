@@ -10,7 +10,7 @@ module SUBSCRIPTION
     end
 
     def delete
-
+      @user.subscribe_books.destroy(@book)
     end
 
     def is_subscriber?
