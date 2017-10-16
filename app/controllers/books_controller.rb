@@ -45,6 +45,7 @@ class BooksController < ApplicationController
   end
 
   def subscribe
+    authorize @book
     begin
       if SUBSCRIPTION::Subscribe.new(current_user, @book).create
         flash[:error] = 'Subscribe Successfully.'
@@ -59,6 +60,7 @@ class BooksController < ApplicationController
   end
 
   def unsubscribe
+    authorize @book
     begin
       if SUBSCRIPTION::Subscribe.new(current_user, @book).delete
         flash[:error] = 'Subscribe Successfully.'

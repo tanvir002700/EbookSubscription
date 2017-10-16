@@ -13,4 +13,12 @@ class BookPolicy < ApplicationPolicy
   def update?
     book.user.id == user.id
   end
+
+  def subscribe?
+    book.user.id != user.id
+  end
+
+  def unsubscribe?
+    subscribe?
+  end
 end

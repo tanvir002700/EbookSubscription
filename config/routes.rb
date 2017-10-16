@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     get :subscribed_index, on: :collection
     get :subscribe, on: :member
     get :unsubscribe, on: :member
+
+    resources :reviews
   end
 end

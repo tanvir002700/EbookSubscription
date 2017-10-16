@@ -1,28 +1,21 @@
 class ReviewsController < ApplicationController
+  before_action :set_book
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
-  # GET /reviews
-  # GET /reviews.json
   def index
     @reviews = Review.all
   end
 
-  # GET /reviews/1
-  # GET /reviews/1.json
   def show
   end
 
-  # GET /reviews/new
   def new
     @review = Review.new
   end
 
-  # GET /reviews/1/edit
   def edit
   end
 
-  # POST /reviews
-  # POST /reviews.json
   def create
     @review = Review.new(review_params)
 
@@ -37,8 +30,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /reviews/1
-  # PATCH/PUT /reviews/1.json
   def update
     respond_to do |format|
       if @review.update(review_params)
@@ -51,8 +42,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # DELETE /reviews/1
-  # DELETE /reviews/1.json
   def destroy
     @review.destroy
     respond_to do |format|
@@ -62,13 +51,17 @@ class ReviewsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_review
-      @review = Review.find(params[:id])
+
+    def set_book
+      @book = Book.find(params[:book_id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def set_review
+      @review = @book.reviews.find(params[:id])
+    end
+
     def review_params
-      params.fetch(:review, {})
+      params.require(:review).permit(:title, :description)
     end
 end
+
