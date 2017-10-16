@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :delete]
+  before_action :set_book, only: [:show, :edit, :update, :delete, :subscribe]
 
   def index
     @books = Book.where(status: :approved)
@@ -42,6 +42,19 @@ class BooksController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def subscribe
+    begin
+      if SUBSCRIPTION::Subscribe.new(current_user, @book).create
+      else
+        render flash: { error: 'Something went wrong.' }
+      end
+    rescue
+      flash[:alert] = 'You are not allow to subscribe.'
+      redirect_to(request.referrer || @book) and return
+    end
+    redirect_to @book
   end
 
   def destroy

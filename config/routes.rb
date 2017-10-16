@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   resources :books do
     get :published_index, on: :collection
     get :subscribed_index, on: :collection
+    get :subscribe, on: :member
+    get :unsubscribe, on: :member
   end
 end
