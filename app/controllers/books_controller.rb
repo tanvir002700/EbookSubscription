@@ -2,10 +2,15 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :delete, :subscribe, :unsubscribe]
 
   def index
-    @books = Book.where(status: :approved)
+    @books = Book.all
   end
 
   def published_index
+    @books = Book.where(status: :approved)
+    render :index
+  end
+
+  def uploaded_index
     @books = current_user.books
     render :index
   end
