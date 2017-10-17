@@ -21,7 +21,7 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        @book.update_attribute(:status, params[:review][:book][:status])
+        @book.update_attribute(:status, params[:review][:book][:status]) if current_user.roles?(:admin)
         format.html { redirect_to [@book, @review], notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
