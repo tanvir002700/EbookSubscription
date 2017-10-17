@@ -1,19 +1,12 @@
-%h1 Listing reviews
-
-%table
+%legend= "#{@book.title} Reviews"
+%table.table.table-striped.table-hover
   %thead
     %tr
+      %th #
+      %th Title
+      %th Description
+      %th Previous Status
+      %th Current Status
       %th
-      %th
-      %th
-
   %tbody
-    - @reviews.each do |review|
-      %tr
-        %td= link_to 'Show', review
-        %td= link_to 'Edit', edit_review_path(review)
-        %td= link_to 'Destroy', review, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Review', new_book_review_path(@book)
+    =render @reviews
