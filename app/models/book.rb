@@ -9,4 +9,8 @@ class Book < ApplicationRecord
 
   mount_uploader :cover_photo, PhotoUploader
   mount_uploader :pdf, PdfUploader
+
+  def update_status(status)
+    update_attribute(:status, status)
+  end
 end
