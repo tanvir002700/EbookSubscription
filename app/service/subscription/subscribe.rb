@@ -6,6 +6,7 @@ module SUBSCRIPTION
     end
 
     def create
+      raise ArgumentError.new("Book isn't published yet.") unless @book.status == :approved
       @user.subscribe_books << @book
     end
 

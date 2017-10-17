@@ -57,11 +57,12 @@ class BooksController < ApplicationController
       else
         render flash: { error: 'Something went wrong.' }
       end
+    rescue ArgumentError => e
+        flash[:alert] = e.message
     rescue
       flash[:alert] = 'You are not allow to subscribe.'
-      redirect_to(request.referrer || @book) and return
     end
-    redirect_to @book
+    redirect_to(request.referrer || @book)
   end
 
   def unsubscribe
