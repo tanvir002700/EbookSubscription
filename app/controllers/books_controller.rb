@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    authorize @books
   end
 
   def published_index

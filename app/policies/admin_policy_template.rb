@@ -22,6 +22,6 @@ module AdminPolicyTemplate
   private
 
   def admin_user?
-    user.role == 'admin'
+    user.roles?(:admin)
   end
 end

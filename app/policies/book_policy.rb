@@ -6,6 +6,10 @@ class BookPolicy < ApplicationPolicy
     @book = book
   end
 
+  def index?
+    admin_user?
+  end
+
   def edit?
     update?
   end
