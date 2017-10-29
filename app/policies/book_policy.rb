@@ -25,4 +25,9 @@ class BookPolicy < ApplicationPolicy
   def unsubscribe?
     subscribe?
   end
+
+  def destroy?
+    update?
+  end
 end
+

@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = Review.all
+    authorize @reviews
   end
 
   def show
