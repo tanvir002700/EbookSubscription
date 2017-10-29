@@ -18,7 +18,6 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @book.reviews.new(review_params)
-    @review.current_status = params[:review][:book][:status]
       if @review.save
         @book.update_status(params[:review][:book][:status]) if current_user.roles?(:admin)
         redirect_to [@book, @review], notice: 'Review was successfully created.'
@@ -51,7 +50,7 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-      params.require(:review).permit(:title, :description, :previous_status)
+      params.require(:review).permit(:title, :description)
     end
 end
 
