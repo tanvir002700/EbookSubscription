@@ -39,3 +39,6 @@ Style/NumericLiterals:
 
 Style/Next:
   Enabled: false
+
+Style/SymbolArray:
+  Enabled: false

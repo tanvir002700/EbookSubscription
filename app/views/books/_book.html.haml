@@ -1,0 +1,11 @@
+%tr
+  %td
+  %td= book.title
+  %td= truncate book.description, length: 80
+  %td= image_tag book.cover_photo, size: 100
+  %td= book.status
+  %td= book.user.email
+  %td
+    = link_to 'Details', book_path(book), class: 'btn btn-primary btn-block'
+    =link_to 'Delete', @book, data: { confirm: 'Are you sure?' },
+                                      method: :delete, class: 'btn btn-danger btn-lg btn-block'

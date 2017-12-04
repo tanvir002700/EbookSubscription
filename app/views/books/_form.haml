@@ -1,0 +1,36 @@
+-#=form_for @book do |f|
+-#  =f.label :title
+-#  =f.text_field :title
+-#  =f.label :description
+-#  =f.text_area :description
+-#  =f.file_field :cover_photo
+-#  =f.file_field :pdf
+-#  =f.submit
+
+=form_for @book, html: {class: 'form-horizontal'} do |f|
+  %fieldset
+    .form-group
+      %label.col-lg-2.control-label{:for => "inputEmail"} Title
+      .col-lg-10
+        =f.text_field :title, class: 'form-control', placeholder: 'Title'
+
+    .form-group
+      %label.col-lg-2.control-label{:for => "inputPassword"} Description
+      .col-lg-10
+        =f.text_area :description, class: 'form-control', placeholder: 'Description', rows: 5
+
+    .form-group
+      %label.col-lg-2.control-label Cover Photo
+      .col-lg-10
+        =f.file_field :cover_photo
+
+    .form-group
+      %label.col-lg-2.control-label Pdf
+      .col-lg-10
+        =f.file_field :pdf
+
+    .form-group
+      .col-lg-6
+        = f.submit class: 'btn btn-primary btn-block'
+      .col-lg-6
+        = link_to 'Cancel', :back, class: 'btn btn-info btn-block'
