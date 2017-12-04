@@ -12,21 +12,22 @@
 
 ActiveRecord::Schema.define(version: 20171016165702) do
 
-  create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "cover_photo"
     t.string "pdf"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id_id"
     t.bigint "user_id"
     t.integer "status", default: 0
     t.index ["user_id"], name: "index_books_on_user_id"
-    t.index ["user_id_id"], name: "index_books_on_user_id_id"
   end
 
-  create_table "books_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "books_users", force: :cascade do |t|
     t.bigint "book_id"
     t.bigint "user_id"
     t.index ["book_id", "user_id"], name: "index_books_users_on_book_id_and_user_id", unique: true
@@ -34,7 +35,7 @@ ActiveRecord::Schema.define(version: 20171016165702) do
     t.index ["user_id"], name: "index_books_users_on_user_id"
   end
 
-  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "reviews", force: :cascade do |t|
     t.bigint "book_id"
     t.string "title"
     t.text "description"
@@ -43,7 +44,7 @@ ActiveRecord::Schema.define(version: 20171016165702) do
     t.index ["book_id"], name: "index_reviews_on_book_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
