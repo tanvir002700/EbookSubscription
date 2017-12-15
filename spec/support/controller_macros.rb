@@ -5,4 +5,12 @@ module ControllerMacros
       sign_in user
     end
   end
+
+  def login_admin
+    before(:each) do
+      user = FactoryGirl.create(:admin)
+      sign_in user
+    end
+  end
 end
+
