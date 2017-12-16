@@ -1,43 +1,41 @@
 # rubocop:disable Metrics/BlockLength
 RSpec.describe User, type: :model do
-  describe 'Associations' do
-    context 'has many' do
-      denomination_files = described_class.reflect_on_association(:denomination_files)
-      it 'denomination_files' do
-        expect(denomination_files.macro).to eq :has_many
-      end
+  describe 'associations' do
+    it 'have many books' do
+      expect(User.reflect_on_association(:books).macro).to eq(:has_many)
+    end
 
-      vouchers = described_class.reflect_on_association(:vouchers)
-      it 'vouchers' do
-        expect(vouchers.macro).to eq :has_many
-      end
-
-      transaction_logs = described_class.reflect_on_association(:transaction_logs)
-      it 'transaction_logs' do
-        expect(transaction_logs.macro).to eq :has_many
-      end
+    it 'has and belongs to many subscribe_books' do
+      expect(User.reflect_on_association(:subscribe_books).macro).to eq(:has_and_belongs_to_many)
     end
   end
 
-  describe 'Validations' do
-    context 'email' do
-      let(:user1) { build(:user, email: 'admin@email.com') }
-      it 'should be valid' do
-        expect(user1).to be_valid
-      end
-
-      let(:user2) { build(:user, email: 'admin@email') }
-      it 'should not be valid' do
-        expect(user2).to_not be_valid
+  describe 'User roles' do
+    context 'When a user is normal' do
+      let(:u) { create :user }
+      it 'has user roles only user' do
+        expect(u.roles).to eq([:user])
       end
     end
-  end
 
-  describe 'Methods' do
-    context '.name' do
-      let(:user) { create(:user) }
-      it 'should return full name' do
-        expect(user.name).to eq("#{user.first_name} #{user.last_name}")
+    context 'When a user is publisher' do
+      let(:u) { create :user, roles: [:publisher] }
+      it 'has roles only publisher' do
+        expect(u.roles).to eq([:publisher])
+      end
+    end
+
+    context 'When a user is admin' do
+      let(:u) { create :admin }
+      it 'has only admin roles' do
+        expect(u.roles).to eq([:admin])
+      end
+    end
+
+    context 'When a user is admin, user, and publisher' do
+      let(:u) { create :user, roles: [:user, :admin, :publisher] }
+      it 'has all 3 roles' do
+        expect(u.roles).to eq([:user, :admin, :publisher])
       end
     end
   end
