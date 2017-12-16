@@ -1,6 +1,6 @@
 # README
 ![status](https://circleci.com/gh/tanvir002700/EbookSubscription/tree/master.svg?style=shield&circle-token=:circle-token)
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/ed1c0624416f125d9c8e/maintainability)](https://codeclimate.com/github/tanvir002700/EbookSubscription/maintainability)
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
