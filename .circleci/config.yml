@@ -34,6 +34,10 @@ jobs:
           - vendor/bundle
 
       - run:
+          name: NodeJs
+          command: sudo apt-get install nodejs
+          
+      - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
