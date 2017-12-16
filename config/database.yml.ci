@@ -1,5 +1,5 @@
 test:
-    adapter: mysql
+    adapter: postgresql
     database: cemcloudTest
     username: root
     password: ''
