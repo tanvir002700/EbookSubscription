@@ -9,7 +9,6 @@ RSpec.describe Book, type: :model do
     it 'has and belongs to many subscriber' do
       expect(Book.reflect_on_association(:subscriber).macro).to eq(:has_and_belongs_to_many)
     end
-
   end
 
   describe '#update_status' do
