@@ -170,7 +170,6 @@ GEM
     mini_portile2 (2.2.0)
     minitest (5.10.2)
     multi_json (1.12.1)
-    mysql2 (0.3.21)
     nested_scaffold (1.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -182,7 +181,7 @@ GEM
     parallel (1.11.2)
     parser (2.4.0.0)
       ast (~> 2.2)
-    pg (0.21.0)
+    pg (0.18.4)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -353,9 +352,8 @@ DEPENDENCIES
   launchy
   listen (~> 3.0.5)
   mini_magick
-  mysql2 (~> 0.3.18)
   nested_scaffold
-  pg
+  pg (~> 0.18.4)
   pry-rails
   pry-rescue
   puma (~> 3.0)
@@ -380,4 +378,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.4
+   1.16.0
