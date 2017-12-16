@@ -12,28 +12,28 @@ RSpec.describe User, type: :model do
 
   describe 'User roles' do
     context 'When a user is normal' do
-      let(:u) { create :user }
+      let(:u) { FactoryGirl.create(:user) }
       it 'has user roles only user' do
         expect(u.roles).to eq([:user])
       end
     end
 
     context 'When a user is publisher' do
-      let(:u) { create :user, roles: [:publisher] }
+      let(:u) { FactoryGirl.create(:user, roles: [:publisher]) }
       it 'has roles only publisher' do
         expect(u.roles).to eq([:publisher])
       end
     end
 
     context 'When a user is admin' do
-      let(:u) { create :admin }
+      let(:u) { FactoryGirl.create(:admin) }
       it 'has only admin roles' do
         expect(u.roles).to eq([:admin])
       end
     end
 
     context 'When a user is admin, user, and publisher' do
-      let(:u) { create :user, roles: [:user, :admin, :publisher] }
+      let(:u) { FactoryGirl.create(:user, roles: [:user, :admin, :publisher]) }
       it 'has all 3 roles' do
         expect(u.roles).to eq([:user, :admin, :publisher])
       end
