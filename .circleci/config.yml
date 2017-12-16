@@ -46,19 +46,22 @@ jobs:
 
       - run:
           name: Database setup
-          command: bin.rails db:create
           command: bin/rails db:schema:load --trace
 
       # Run rspec in parallel
-      - type: shell
-        command: |
-          bin/rails rspec --profile 10 \
+
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            bundle exec rspec --format progress \
                             --format RspecJunitFormatter \
-                            --out test_results/rspec.xml \
+                            --out /tmp/test-results/rspec.xml \
                             --format progress \
-                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-
-
+                            "${TEST_FILES}"
+    
       # Save test results for timing analysis
       - store_test_results:
           path: test_results
