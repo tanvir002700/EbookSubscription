@@ -52,7 +52,7 @@ jobs:
       # Run rspec in parallel
       - type: shell
         command: |
-          bundle exec rspec --profile 10 \
+          bin/rails rspec --profile 10 \
                             --format RspecJunitFormatter \
                             --out test_results/rspec.xml \
                             --format progress \
