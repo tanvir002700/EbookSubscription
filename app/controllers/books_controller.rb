@@ -8,16 +8,19 @@ class BooksController < ApplicationController
 
   def published_index
     @books = Book.where(status: :approved)
+    authorize @books
     render :index
   end
 
   def uploaded_index
     @books = current_user.books
+    authorize @books
     render :index
   end
 
   def subscribed_index
     @books = current_user.subscribe_books
+    authorize @books
     render :index
   end
 
