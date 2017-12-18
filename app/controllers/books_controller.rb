@@ -21,18 +21,22 @@ class BooksController < ApplicationController
     render :index
   end
 
-  def show; end
+  def show
+    authorize @book
+  end
 
   def new
     @book = Book.new
+    authorize @book
   end
 
   def create
     @book = current_user.books.new(book_params)
+    authorize @book
 
     if @book.save
       flash[:success] = 'Created new book'
-      redirect_to books_path
+      redirect_to uploaded_index_books_path
     else
       render :new
     end
