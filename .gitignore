@@ -93,3 +93,5 @@ docker-compose.yml
 
 # tilde files are usually backup files from a text editor
 *~
+.
+.coveralls.yml
