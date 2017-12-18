@@ -18,7 +18,7 @@ RSpec.describe BookPolicy do
       end
     end
 
-    permissions :edit?, :update?, :destroy? do
+    permissions :published_index?, :uploaded_index?, :edit?, :update?, :destroy? do
       it 'not grants access' do
         expect(subject).not_to permit(admin, book)
       end
@@ -34,7 +34,7 @@ RSpec.describe BookPolicy do
       end
     end
 
-    permissions :subscribe?, :unsubscribe? do
+    permissions :published_index?, :subscribe?, :unsubscribe? do
       it 'grants access' do
         expect(subject).to permit(user2, book)
       end
@@ -42,7 +42,7 @@ RSpec.describe BookPolicy do
   end
 
   context 'When user is publisher' do
-    permissions :edit?, :update?, :destroy? do
+    permissions :uploaded_index?, :edit?, :update?, :destroy? do
       it 'grants access' do
         expect(subject).to permit(user, book)
       end

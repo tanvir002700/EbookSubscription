@@ -10,6 +10,18 @@ class BookPolicy < ApplicationPolicy
     admin_user?
   end
 
+  def published_index?
+    user.roles?(:user)
+  end
+
+  def uploaded_index?
+    user.roles?(:user)
+  end
+
+  def subscribed_index?
+    true
+  end
+
   def create?
     true
   end
