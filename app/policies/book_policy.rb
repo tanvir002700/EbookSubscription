@@ -10,6 +10,10 @@ class BookPolicy < ApplicationPolicy
     admin_user?
   end
 
+  def create?
+    true
+  end
+
   def edit?
     update?
   end
