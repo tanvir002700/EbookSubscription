@@ -13,6 +13,6 @@ RSpec.describe PdfUploader do
   end
 
   it 'has correct format' do
-    expect(uploader).to be_format('PBM')
+    expect(uploader).to be_format('pbm')
   end
 end
