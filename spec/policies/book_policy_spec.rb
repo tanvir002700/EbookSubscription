@@ -6,7 +6,7 @@ RSpec.describe BookPolicy do
   context 'When user is admin user' do
     let(:admin) { FactoryGirl.create(:admin) }
 
-    permissions :index?, :new?, :create? do
+    permissions :index?, :new?, :create?, :show? do
       it 'grants access' do
         expect(subject).to permit(admin, Book.new)
       end
@@ -28,7 +28,7 @@ RSpec.describe BookPolicy do
   context 'When user is normal user' do
     let(:user2) { FactoryGirl.create(:user) }
 
-    permissions :index?, :edit?, :update?, :destroy? do
+    permissions :index?, :edit?, :update?, :destroy?, :show? do
       it 'not grants access' do
         expect(subject).not_to permit(user2, book)
       end
@@ -42,7 +42,7 @@ RSpec.describe BookPolicy do
   end
 
   context 'When user is publisher' do
-    permissions :uploaded_index?, :edit?, :update?, :destroy? do
+    permissions :uploaded_index?, :edit?, :update?, :destroy?, :show? do
       it 'grants access' do
         expect(subject).to permit(user, book)
       end
@@ -51,6 +51,16 @@ RSpec.describe BookPolicy do
     permissions :index?, :subscribe?, :unsubscribe? do
       it 'not grants access' do
         expect(subject).not_to permit(user, book)
+      end
+    end
+  end
+
+  context 'When book status is approved' do
+    let(:user2) { FactoryGirl.create(:user) }
+    permissions :show? do
+      it 'grant access to normal user' do
+        book.status = :approved
+        expect(subject).to permit(user2, book)
       end
     end
   end

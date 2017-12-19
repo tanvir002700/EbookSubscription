@@ -22,6 +22,10 @@ class BookPolicy < ApplicationPolicy
     true
   end
 
+  def show?
+    admin_user? || owner_of_book? || book.status == 'approved'
+  end
+
   def create?
     true
   end
@@ -31,7 +35,7 @@ class BookPolicy < ApplicationPolicy
   end
 
   def update?
-    book.user.id == user.id
+    owner_of_book?
   end
 
   def subscribe?
@@ -45,5 +49,10 @@ class BookPolicy < ApplicationPolicy
   def destroy?
     update?
   end
+
+  private
+    def owner_of_book?
+      user.id == book.user.id
+    end
 end
 
