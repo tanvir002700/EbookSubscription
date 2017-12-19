@@ -5,12 +5,10 @@ RSpec.describe PdfUploader do
   let(:uploader) { PdfUploader.new(user, :pdf) }
 
   before do
-    PdfUploader.enable_processing = true
     File.open('spec/support/files/clean_code.pdf') { |f| uploader.store!(f) }
   end
 
   after do
-    PdfUploader.enable_processing = false
     uploader.remove!
   end
 
