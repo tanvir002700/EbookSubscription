@@ -11,7 +11,7 @@ class BookPolicy < ApplicationPolicy
   end
 
   def published_index?
-    user.roles?(:user)
+    true
   end
 
   def uploaded_index?

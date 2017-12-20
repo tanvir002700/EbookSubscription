@@ -18,7 +18,7 @@ RSpec.describe BookPolicy do
       end
     end
 
-    permissions :published_index?, :uploaded_index?, :edit?, :update?, :destroy? do
+    permissions :uploaded_index?, :edit?, :update?, :destroy? do
       it 'not grants access' do
         expect(subject).not_to permit(admin, book)
       end
