@@ -6,7 +6,7 @@ RSpec.describe BookPolicy do
   context 'When user is admin user' do
     let(:admin) { FactoryGirl.create(:admin) }
 
-    permissions :index?, :new?, :create?, :show? do
+    permissions :index?, :subscribed_index?, :new?, :create?, :show? do
       it 'grants access' do
         expect(subject).to permit(admin, Book.new)
       end
@@ -34,7 +34,7 @@ RSpec.describe BookPolicy do
       end
     end
 
-    permissions :published_index?, :subscribe?, :unsubscribe? do
+    permissions :published_index?, :subscribed_index?, :subscribed_index?, :subscribe?, :unsubscribe? do
       it 'grants access' do
         expect(subject).to permit(user2, book)
       end
