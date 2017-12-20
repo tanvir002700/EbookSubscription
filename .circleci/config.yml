@@ -46,6 +46,7 @@ jobs:
 
       # Database setup
       - run: cp config/database.yml.ci config/database.yml
+      - run: cp config/secrets.example.yml config/secrets.yml
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
