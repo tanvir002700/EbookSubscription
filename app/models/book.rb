@@ -7,11 +7,11 @@ class Book < ApplicationRecord
 
   enum status: [:pending, :need_update, :approved, :rejected]
 
+  validates :user, presence: true
   validates :title, presence: true
   validates :description, presence: true
   validates :cover_photo, presence: true
   validates :pdf, presence: true
-  validates :status, presence: true
 
   mount_uploader :cover_photo, PhotoUploader
   mount_uploader :pdf, PdfUploader
